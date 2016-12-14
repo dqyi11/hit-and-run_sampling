@@ -16,12 +16,13 @@ def generate_random_direction():
 
 def get_random_sample_toward_intersection(x, rnd_dir, poly, R):
     x1 = x
-    x2 = x + rnd_dir * R
+    x2 = x + rnd_dir * R * 10
     line = geometry.LineString([(x1[0],x1[1]),(x2[0], x2[1])])
     
     intersecs = line.intersection(poly)
     sec_x, sec_y = intersecs.coords.xy
     tmin = np.array([sec_x[0], sec_y[0]])
+    #tmin = x
     tmax = np.array([sec_x[len(sec_x)-1], sec_y[len(sec_y)-1]])
     y = tmin + (tmax-tmin) * np.random.rand()
     return y
